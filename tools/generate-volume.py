@@ -30,8 +30,8 @@ v1[max_index-ramp_length : max_index] -= (
                   (poisson_mag + 6) * (np.arange(ramp_length) /
                                        poisson_mag) ** 0.5).astype(int)
 np.clip(v1, 0, None, v1)
-plt.plot(v1)
-plt.show(block=True)
+#plt.plot(v1)
+#plt.show(block=True)
 
 volume_noise = np.random.normal(scale=0.05, size=(p, w, w))
 indices_pln = (horizon[np.newaxis, ...] +
@@ -40,16 +40,16 @@ indices_row = np.arange(w)[np.newaxis, :, np.newaxis]
 indices_col = np.arange(w)[np.newaxis, np.newaxis, :]
 index_vol = (indices_pln, indices_row, indices_col)
 volume_noise[index_vol] += v0[:, np.newaxis, np.newaxis]
-plt.imshow(volume_noise[:, 50, :])
-plt.show(block=True)
-plt.hist(volume_noise.ravel(), bins=256)
-plt.show(block=True)
+#plt.imshow(volume_noise[:, 50, :])
+#plt.show(block=True)
+#plt.hist(volume_noise.ravel(), bins=256)
+#plt.show(block=True)
 
 volume_noise2 = np.random.poisson(2, size=(p, w, w)) - 2
 volume_noise2[index_vol] += v1[:, np.newaxis, np.newaxis]
 np.clip(volume_noise2, 0, None, volume_noise2)
-plt.imshow(volume_noise2[:, 50, :])
-plt.show(block=True)
+#plt.imshow(volume_noise2[:, 50, :])
+#plt.show(block=True)
 
 MM = max(abs(M), abs(m))
 volume0 = volume_noise[MM:-MM, :, :]
